@@ -116,3 +116,54 @@ if año % 4 == 0 and año % 100 != 0 or año % 400 == 0:
     print("Es un añ0 bisiesto")
 else:
     print("Año Normal")
+
+""" 1. Control de acceso y validación de transacción bancaria
+Un sistema de seguridad evalúa una transferencia electrónica con tres variables: cuenta_activa (booleano),
+monto_transferencia (numérico) y clave_dinamica_valida (booleano).
+El flujo de seguridad funciona en dos etapas:
+Primera validación (Estado de cuenta): Si la cuenta no está activa, el sistema debe bloquear la operación 
+de inmediato e informar que la cuenta está inactiva (sin importar el monto ni la clave).
+Segunda validación (Si la cuenta sí está activa):
+Primero verifica que el monto sea un número válido (mayor a 0). Si es cero o negativo, rechaza por monto
+inválido.
+Si el monto es válido y no supera $1,000,000, la transferencia se aprueba directamente sin pedir clave 
+dinámica.
+Si el monto supera $1,000,000, el sistema exige que la clave dinámica sea válida para aprobarla; 
+de lo contrario, la rechaza por fallo de autenticación. """
+
+
+cuenta_activa = True
+monto_trasferencia = 10000000
+clave_dinamica_valida = True
+
+if cuenta_activa == False:
+    print("Cuenta inactiva")
+elif monto_trasferencia <= 0:
+    print("Monto invalido")
+elif monto_trasferencia <= 1000000:
+    print("Trasferencia exitosa")
+elif monto_trasferencia > 1000000 and clave_dinamica_valida:
+    print("Clave dinamica correcta, Trasferencia Exitosa")
+else:
+    print("Fallo de autenticacion")
+
+""" Clasificador de calidad de datos (Data Cleaning aplicado)
+En Ciencia de Datos, antes de entrenar un modelo o calcular promedios, debes filtrar registros dañados. 
+Recibes una fila de una tabla de clientes con dos variables: edad y ingresos.
+Evalúa el registro en este orden estricto:
+Registro corrupto: Si la edad es menor a 18 o mayor a 100, o si los ingresos son negativos, clasifica el 
+registro como "Dato atípico / Error de captura - Descartar".
+Segmento Preferencial: Si el dato es válido, la edad está entre 25 y 60 años (inclusive) y los ingresos 
+superan $5,000,000, clasifícalo como "Cliente Segmento Preferencial".
+Segmento Masivo: Si el dato es válido pero no entra en el grupo anterior, clasifícalo como 
+"Cliente Segmento Masivo". """
+
+edad = 16
+ingresos = 70000000
+
+if (edad < 18 or edad > 100) or ingresos < 0:
+    print("Dato atípico / Error de captura - Descartar")
+elif 25 <= edad <= 60 and ingresos > 5000000:
+    print("Cliente Segmento Preferencial")
+else:
+    print("Cliente Segmento Masivo")
